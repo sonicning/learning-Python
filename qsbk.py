@@ -28,7 +28,9 @@ class QSBK:
             # 构建请求的request
             s = requests.session()
             s.keep_alive = False
-            req = requests.get(url, headers=self.headers, proxies=self.proxies)
+            req = requests.get(url, headers=self.headers)
+            # 如果配置了代理，请使用下面的方式构建request
+            # req = requests.get(url, headers=self.headers, proxies=self.proxies)
             html = req.text
             div_bf = BeautifulSoup(html, features="lxml")
             div1 = div_bf.find_all('div', class_='article block untagged mb15 typs_long')
